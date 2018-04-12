@@ -2,9 +2,10 @@ pico-8 cartridge // http://www.pico-8.com
 version 15
 __lua__
 -- morse input logic
-time_dot = 5
+time_dot = 4
 time_dash = time_dot * 2
-time_proceed = time_dot * 3
+time_next_letter = time_dot * 3
+time_next_word = time_dot * 7
 timer_pressed = 0
 timer_release = 0
 morse_input = false
@@ -91,7 +92,7 @@ function update_morse_input()
   end
 	else -- input inactive
   timer_release += 1
-  if (timer_release == time_proceed and current_morse_string ~= '') then
+  if (timer_release == time_next_letter and current_morse_string ~= '') then
    parse_current_morse_string()
   end
   if btn(0) then
